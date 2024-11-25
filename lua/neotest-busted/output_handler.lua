@@ -51,6 +51,11 @@ return function(options)
             os.exit(1)
         end
 
+        local pendings = handler.pendings
+        for _, test in ipairs(pendings) do
+          test.element.attributes.default_fn = nil  -- functions cannot be encoded into json
+        end
+
         local test_results = {
             pendings = handler.pendings,
             successes = handler.successes,
